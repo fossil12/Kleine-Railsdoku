@@ -1,0 +1,81 @@
+/* @override http://kleinerailsdoku.heroku.com/stylesheets/style.css */
+
+body {
+	background: #f8979a;
+	color: #481409;
+	font-family: 'Helvetica', sans-serif;
+}
+
+a{
+	color: #770f37;
+}
+
+div.container{
+	width: 90%;
+	margin: 0 auto;
+}
+
+header{
+	margin-bottom: 70px;
+}
+
+header h1{
+	font-size: 5em;
+}
+
+nav{
+	height: 10px;
+}
+
+nav li{
+	float: left;
+	list-style-type: none;
+	padding: 0px 10px 0px 0px;
+	margin: 0px;
+}
+
+nav li span{
+	background-color: #f53b36;
+	padding: 10px;
+	border-radius: 5px;
+	-moz-box-shadow: inset 2px 2px 5px #000;
+	-webkit-box-shadow: inset 2px 2px 5px #000;
+	box-shadow: inset 2px 2px 5px #000;
+}
+
+nav li span:hover{
+	-moz-box-shadow: 2px 2px 5px #000;
+	-webkit-box-shadow: 2px 2px 5px #000;
+	box-shadow: 2px 2px 5px #000;
+}
+
+nav li span a{
+	text-decoration: none;
+	color: #fff;
+}
+
+nav ul{
+	padding: 0px;
+	margin: 0px;
+}
+
+section{
+	margin-top: 70px;
+}
+
+section pre{
+	background-color: #f0d9d2;
+	padding: 5px 5px 5px 25px;
+	border-left: 3px #8f1a2c solid;
+	z-index: ;
+}
+
+p code{
+	
+	background-color: #f0d9d2;
+}
+
+footer{
+	padding: 15px 0px 10px 0px;
+	font-size: 0.7em;
+}
