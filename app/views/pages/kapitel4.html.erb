@@ -1,2 +1,126 @@
-<h1>Pages#kapitel4</h1>
-<p>Find me in app/views/pages/kapitel4.html.erb</p>
+<h1>Kapitel 4 - Ruby</h1>
+
+<p>Für Ruby gibt es die Testkonsole <code>irb</code>. In Rails gibt es das gleiche zusätzlich mit allen Rails-Funktionen und den selbst definierten in der App und zwar mit:</p>
+
+<pre><code>$ rails console # oder kurz $ rails c
+</code></pre>
+
+<p>Um Datenbanken nicht nachwirkend zu verändern, kann die Konsole auch in einer Sandbox gestartet werden.</p>
+
+<pre><code>$ rails c --sandbox
+</code></pre>
+
+<h2>Ruby Allgemein</h2>
+
+<ul>
+<li>Methoden, die am Ende ein Fragezeichen haben, geben immer ein Boolean zurück. Also richtig oder falsch.</li>
+<li>Alles ist ein Objekt in Ruby.</li>
+<li><code>nil</code> ist das einzige Objekt, das als Boolean <code>false</code> zurück gibt.</li>
+</ul>
+
+<h3>Definition von Methoden</h3>
+
+<p>Definitionen in Ruby beginnen mit einem <code>def</code> und falls kein <code>return</code> explizit geschrieben wird, wird automatisch das zuletzt evaluartierte Resulatat zurück gegeben.</p>
+
+<p>So sieht eine Funktion aus, die immer <code>"Hello World"</code> zurückgibt:</p>
+
+<pre><code>def hello_world
+    "Hello World"
+end
+</code></pre>
+
+<h3>Definition von Klassen</h3>
+
+<p>In Ruby ist, wie schon gesagt, alles ein Objekt. Es stammt also alles von einer Klasse ab. Diese Abstammung kann in jeder Klasse mit <code>.class</code> ausgelsesen werden.</p>
+
+<p>Eine Klasse wird wie folgt definiert:</p>
+
+<pre><code>class Word &lt; String
+    # Methoden
+end
+</code></pre>
+
+<p>Die Klasse heisst dann <code>Word</code> und erbt alle Funktionen von <code>String</code>.</p>
+
+<p>Es können aber auch bestehende Klassen mit neuen Methoden erweitert werden, ohne selbst eine neue Klasse zu definieren.</p>
+
+<p>Um Strings einen neue Methode beizubringen ist folgender Code nötig:</p>
+
+<pre><code>class String
+    def neueMethode
+        # Methode
+    end
+end
+</code></pre>
+
+<p>Die Methode <code>initialize</code> in einer Klasse wird automatisch aufgerufen, wenn eine neuen Instanz mit <code>Klassenname.new</code> erzeugt wird.</p>
+
+<h2>Strings</h2>
+
+<ul>
+<li><p>Können durch <code>""</code> erstellt werden.</p>
+
+<p>z.B. <code>"foobar"</code></p></li>
+<li><p>Können addiert werden.</p>
+
+<pre><code>"foo" + "bar"
+=&gt; "foobar"
+</code></pre></li>
+<li><p>Es gibt zwei Arten mit Variablen Strings zu erstellen.</p>
+
+<ol>
+<li><code>variable1 + " " + variable2</code></li>
+<li><code>"#{variable1} #{varibale2}"</code></li>
+</ol></li>
+<li><p>Strings mit nur einfachen Anführungszeichen verhalten sich grundsätzlich gleich. Es wird aber nichts im String interpretiert, das heisst, dass keine Zeichen escaped werden müssen.</p>
+
+<p><code>'\n'</code> ist zum Beispiel das gleich wie <code>"\\n"</code>.</p></li>
+</ul>
+
+<h2>Arrays</h2>
+
+<ul>
+<li><p>Können durch <code>[]</code> erstellt werden. Dabei werden einzelne Elemente durch Kommas getrennt.</p>
+
+<p>z.B. <code>["foo", "bar", "baz"]</code></p>
+
+<p>Eine weitere Möglichkeit Arrays zu erzuegen ist folgende:</p>
+
+<pre><code>%w[foo bar baz]
+</code></pre></li>
+<li><p>Mit <code>.sort</code> können sie sortiert werden</p></li>
+<li><p>Mit <code>.reverse</code> kann die Reiehenfolge umgekert werden.</p></li>
+<li><p>Mit <code>.shuffle</code> kann eine zufällige Reihenfolge erzeugt werden.</p></li>
+<li><p>Um alle Elemente in einen String zusammen zu fassen, kann <code>.join</code> aufgerufen werden. Es kann in einer Klammer nach der Methode auch optional ein Trenne für zwischen den Elementen definiert werden.</p></li>
+</ul>
+
+<h2>Blöcke</h2>
+
+<p>Blocks sind Schalufen, die auf Arrays (oder Bereiche/ranges) angewendet werden können. Dabei kann z.B. mit <code>.each</code> eine <code>for</code>-Schleif aus anderen Programmiersprachen einfacher aufgeschrieben werden.</p>
+
+<p>Es gibt Zwei mögliche Notiationen</p>
+
+<pre><code>    array = [1, 2, 3, 4]
+
+    array.each { |i| puts i }
+
+    array.each do |i|
+        puts i
+    end
+</code></pre>
+
+<p>Wobei empfohlen wird die erste Variante für Einzeiler zu verwenden und die zweite Variante für mehrzeilige Blöcke. Zwischen den "<code>|"</code>" wird die Laufvariable definiert.</p>
+
+<h2>Hashes</h2>
+
+<p>Hashes sind sogenante Key-Value Array. Das heisst, dass jedes Elemente über einen bestimmten Namen aufgerufen werden kann.</p>
+
+<ul>
+<li><p>Durch <code>{}</code> werden Hashes erstellt</p>
+
+<p>z.B. <code>{ "name" =&gt; "David Keller", "email" =&gt; "dev@davidkeller.me" }</code></p></li>
+<li><p>Damit nicht immer mühsam String als Keys verwendet werden müssen, gibt es sogenannte <em>Symbole</em> in Ruby. Diese beginnen immer mit einem Doppelpunkt. Das vorhherige Beispiel könnte dann so aussehen:</p>
+
+<pre><code>{ :name =&gt; "David Keller", :email =&gt; "dev@davidkeller.me" }
+</code></pre></li>
+</ul>

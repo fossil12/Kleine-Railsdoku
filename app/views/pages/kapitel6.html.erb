@@ -1,2 +1,65 @@
-<h1>Pages#kapitel6</h1>
-<p>Find me in app/views/pages/kapitel6.html.erb</p>
+<h1>Kapitel 6</h1>
+
+<h2>Model</h2>
+
+<p>Das Model ist die Verbindungsschicht zwischen Controller und Datenbank. Ein neues Model wird mit <code>rails generate</code> erzeugt.</p>
+
+<pre><code>$ rails generate model Modelname parameter1:typ1 [parameter2:typ2 ...]
+</code></pre>
+
+<p>Dabei können beliebig viele Paramter definiert werden. Als Typ kann zum Beispiel <code>string</code> eingesetzt werden.</p>
+
+<p>Ein neues Model hat eine Datei mit der Klasse in <code>programmname/app/models</code> und erzeugt auch eine Datenbankmigrationsdatei in <code>programmname/db/migrate</code>, welche für die übergebenen Parameter Spalten in der Datenpank anlegt. Des weiteren wird eine Datei für Tests (in <code>programmname/spec/models</code>) angelegt.</p>
+
+<p>Nun muss die Datenbank auf den aktuellen Stand migriert werden:</p>
+
+<pre><code>$ rake db:migrate
+</code></pre>
+
+<p>(Zurück kann mit</p>
+
+<pre><code>$ rake db:rollback
+</code></pre>
+
+<p>gegangen werden).</p>
+
+<h2>Validerung von Variablen</h2>
+
+<p>Um Variablen auf bestimmte Eigenschaften zu überprüfen, gibt es die Funktion <code>validates</code>. Dieser wird zuerst die Variable (oder oft auch das Symbol) übergeben und danach ein Hash mit allen Validierungen. Es gibt folgende Validerungen:</p>
+
+<ul>
+<li><code>:acceptance =&gt; Boolean</code></li>
+<li><code>:confirmation =&gt; Boolean</code></li>
+<li><code>:exclusion =&gt; { :in =&gt; Ennumerable }</code></li>
+<li><code>:inclusion =&gt; { :in =&gt; Ennumerable }</code></li>
+<li><code>:format =&gt; { :with =&gt; Regexp }</code></li>
+<li><code>:length =&gt; { :minimum =&gt; Fixnum, maximum =&gt; Fixnum, }</code></li>
+<li><code>:numericality =&gt; Boolean</code></li>
+<li><code>:presence =&gt; Boolean</code></li>
+<li><code>:uniqueness =&gt; Boolean</code></li>
+</ul>
+
+<p>Sobald man das Objekt in der Datenbank speichern will, werden die Validerungen gestestet und die Daten des Objekts nur gespeichert, wenn alle Vorgaben erfüllt sind.</p>
+
+<p>Die Uniqueness (Einmaligkeit) wird mit der Validierung nicht komplett grantiert. Um dies zu garantieren, muss diese Einmaligkeit auch in der Datenbank verankert werden. Es muss ein Index für die Variable definiert werden und diese dann als einzigartig definiert. Wenn zum Beispiel  die Email eines Benutzters eindeutig sein muss, wird zuerst die Migrations mit folgendem Befehl derzeugt.</p>
+
+<pre><code>$ rails generate migration add_email_uniqueness_index
+</code></pre>
+
+<p>Danach muss die Datei um folgende Zeilen ergänzt werden:</p>
+
+<pre><code>def self.up
+    add_index :users, :email, :unique =&gt; true
+end
+
+def self.down
+    remove_index :users, :email
+end
+</code></pre>
+
+<h2>Debuginformationen</h2>
+
+<p>Um Debuginformationen zur einer Railsseite, die auf dem Testserver läuft, zu erhalten, kann diese Zeile in das Layout eingeführt werden. Dabei werden diese Infos nur im Development-Modus (Entwickler-Modus) angezeigt.</p>
+
+<pre><code>    &lt;%= debug(params) if Rails.env.development? %&gt;
+</code></pre>

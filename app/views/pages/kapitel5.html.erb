@@ -1,2 +1,89 @@
-<h1>Pages#kapitel5</h1>
-<p>Find me in app/views/pages/kapitel5.html.erb</p>
+<h1>Kapitel 5</h1>
+
+<p>In diesem Kapitel geht es auch noch um CSS. Das dies für den Autor dieser Zusammenfassung irrelevant ist, wird es hier nicht weiter erwähnt.</p>
+
+<h2>Vordefinierte Helper in Rails</h2>
+
+<p>Es gibt eine Reihe von Helpern, die in Ruby schon vordefiniert sind. Einige davon werd nun hier aufgezählt.</p>
+
+<ul>
+<li><p><code>stylseesheet_link_tag</code></p>
+
+<p>Wird, wie der Name schon sagt, zum Einbinden von Stylesheets (CSS-Dateien) verwendet. Als erster Parameter wird der relative Pfad zum Stylesheet im Ordner <code>programmname/public/stylesheet</code> angegeben (.css ist optional) und als zweites der Mediatyp in Form eines Hashes.</p>
+
+<pre><code>stylesheet_link_tag 'style', :media =&gt; 'screen'
+</code></pre>
+
+<p>Hier sehen wir auch, dass bei einem Funktionsaufruf in Ruby keine Klammern gesetzt werden müssen und falls als letzter Parameter ein Hash übergeben wird, dort auch keine geschweiften Klammern nötig sind. Der Aufruf könnte auch folgendermassen geschrieben werden:</p>
+
+<pre><code>stylesheet_link_tag('style', { :media =&gt; 'screen' }
+</code></pre></li>
+<li><p><code>image_tag</code></p>
+
+<p>Der <code>image_tag</code> wird zum Einbinden von Bildern verwendet. Dabei wird zuerst auch der realtive Pfad zu <code>programmname/public/images</code> angegeben, danach als Hash der <code>alt</code>-Tag und optional die Klasse(n).</p>
+
+<pre><code>image_tag("logo.png", :alt =&gt; "Logo der Firma X", :class =&gt; "logo")
+</code></pre></li>
+<li><p><code>link_to</code></p>
+
+<p>Erzeugt Links, die vor allem für interne Verlinkungen sehr praktisch sind, da dann immer automatisch die richtigen Links geseyt werden. <code>link_to</code> wird zuerst der zu verlinkende Text über geben, dann der Link und schlussendlich optional noch eine Klasse.</p>
+
+<pre><code>link_to "Home", "/", :class =&gt; "home_link"
+</code></pre></li>
+</ul>
+
+<h2>Partials</h2>
+
+<p>Partials ermöglichen das Aufteilen des Layouts in noch mehr Teile als nur in das Hauptlayout und die indivituellen Views. Dabei muss im View-Ordner (<code>programmname/app/views</code>) eine Datei mit einem <code>_</code> davor angelegt werden. Diese kann dann ins Hauptlayout mit</p>
+
+<pre><code>&lt;% render 'partial' %&gt;
+</code></pre>
+
+<p>eingebunden werden. Hier wird zum Beispiel die Datei <code>_partial.html.erb</code> eingebunden.</p>
+
+<h2>Integrationstests, Routen &amp; Interne Verlinkung</h2>
+
+<h3>Integrationstest</h3>
+
+<p>Integrationstests, sind Tests, die die Railsapp testen, als seien sie Benutzer die mit ihrem Browser auf die App zugreifen.</p>
+
+<p>Die Datei dafür kann folgendermassen generiert werden:</p>
+
+<pre><code>$ rails generate integration_test name_des_tests
+</code></pre>
+
+<p>Um dann beispielsweise zu testen, ob unter <code>/</code> eine Startseite mit dem Titel Home erscheint, sind folgende Zeilen Testcode nötig:</p>
+
+<pre><code>it "should have a Home page at '/'" do
+    get '/'
+    response.should have_selector('title', :content =&gt; "Home")
+end
+</code></pre>
+
+<h3>Routen</h3>
+
+<p>Um nun die Seite Kontakt aus dem Controller <code>Seiten</code> unter <code>/kontakt</code> erreichbar zu machen müssen sogenannte Routen in <code>programmname/config/routes.rb</code> eingetragen werden. Für unser beispiel wäre das</p>
+
+<pre><code>match '/kontakt', :to =&gt; 'seiten#kontakt'
+</code></pre>
+
+<p>Für die Startseite unter <code>/</code> muss dann nicht</p>
+
+<pre><code>match '/', :to =&gt; 'seiten#home'
+</code></pre>
+
+<p>eingetragen werden, sondern es kann einfach</p>
+
+<pre><code>root :to =&gt; 'seiten#home'
+</code></pre>
+
+<p>in die <code>routes</code>-Datei eingetragen werden.</p>
+
+<h3>Interne Verlinkung</h3>
+
+<p>In den <code>link_to</code>-Tag müssen dank der Routen nicht mehr explixit die Links angegeben werden, sondern sie können folgendermassen integriert werden:</p>
+
+<pre><code>link_to "Home", root_path
+
+link_to "Kontakt", kontakt_path
+</code></pre>

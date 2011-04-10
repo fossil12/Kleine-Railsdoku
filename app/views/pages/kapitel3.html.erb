@@ -1,2 +1,117 @@
-<h1>Pages#kapitel3</h1>
-<p>Find me in app/views/pages/kapitel3.html.erb</p>
+<h1>Kapitel 3</h1>
+
+<h2>Erstellen einer neuen Railsinstanz</h2>
+
+<p>Alle nötigen Befehle für das Erstellen und Einrichten einer Railsapp mit <a href="http://rspec.info/">RSpec</a> als Testframework.</p>
+
+<p>Neue Railsinstannz im Ordner <code>programmname</code> ohne Standardtests (<code>-T</code>):</p>
+
+<pre><code>$ rails new programmname -T
+</code></pre>
+
+<p>Damit nun respec als Testframework läuft, müssen folgende Zeilen zum Gemfile (<code>programmname/Gemfile</code>) hizugefügt werden:</p>
+
+<pre><code>group :development do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'webrat'
+end
+</code></pre>
+
+<p>Um die gems zu installieren wir nun:</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>aufgerufen. Und rspec muss dann auch installiert werden:</p>
+
+<pre><code>$ rails generate rspec:install
+</code></pre>
+
+<p>Zuletzt noch ein git-Reporitory erstellen, um eine Versionierung zu haben und diese zum Beispiel bei <a href="http://github.com">GitHub</a> zu backupen. </p>
+
+<pre><code>$ git init
+$ git add .  # Alle Dateien in das Repository aufnehmen
+$ git commit -m "Initialer Commit"
+
+# Optional GitHub hinzufügen (nachem das neue Repository auf GitHub angelegt wurde)
+$ git remote add origin git@github.com:&lt;Benutzername&gt;/programmname.git
+$ git push origin master  # Nachher sollte $ git push reichen
+</code></pre>
+
+<p>Mit dem Erstellen eines git-Repositorys kann dann die Railsinstanz, auch ganz einfach zu <a href="http://heroku.com">Heroku</a> gepusht werden, wo sie produktiv verwendet werden kann.</p>
+
+<pre><code>$ heroku create # Jenachdem heroku noch installieren mit $ gem install heroku
+$ git push heroku master # Nachher sollte $ git push heroku reichen
+$ heroku open # Die Instanz im Browser öffnen
+</code></pre>
+
+<h2>Statische Seiten</h2>
+
+<p>Alle rein statischen Seiten, die in <code>programmname/public</code> liegen, werden von Rails direkt so ausgeliefert.</p>
+
+<p>Statische Seiten im Sinne von Rails sind Seiten, die von einem Controller (Rails setzt auf die <a href="http://de.wikipedia.org/wiki/Model_View_Controller">Model View Controller-Architektur</a> (MVC)) ausgeliefert werden, aber keine dynamischen Daten aus einer Datenbank laden.</p>
+
+<h3>Conroller mit Rails generieren</h3>
+
+<p>Um einen Controller und Views für solche statischen Seiten zu erzeugen kann folgender Befehl genutzt werden:</p>
+
+<pre><code>$ rails generate controller Controllername methodenname1 [methodenname2 ...] # Es können beliebig viele Methodennamen hinzugefügt werden
+</code></pre>
+
+<p>Dabei wird in <code>programmanme/app/controllers</code> ein neuer Controller mit dem vorgegebenen Namen und <code>Controller</code> dahinter angelegt, in <code>programmname/app/views/conrollername</code> wir ein View für jede Methode angelegt und in <code>programmname/spec</code> werden Dateien für die Tests angelegt, von denen nur diejenigen in <code>controller</code> gebraucht werden. Der Rest kann getrost gelöscht werden. Schlussendlich werden in <code>programmname/config/routes.rb</code> die URLs für die Seiten (welche den Views und Methoden ensprechen) definiert, damit sie auf gerufen werden können.</p>
+
+<h3>Rails mit lokalem Server testen</h3>
+
+<p>Mit</p>
+
+<pre><code>$ rails server # oder kurz $ rails s
+</code></pre>
+
+<p>kann ein lokaler Server gestartet werden und unter <code>http://localhost:3000</code> Startseite aufgerufen werden. Die gerade erzeugten Views können über die angegebenen Pfade in <code>routes.rb</code> angesurft werden (z. B. <code>http://loclahost:3000/controllername/methodenname1</code>).</p>
+
+<h2>Test-driven developement (TDD)</h2>
+
+<p>Test-driven developement bedeutet "gestgeriebenes Entwickeln", das heisst, dass zuerst Tests geschrieben werden und danach die Funktion programmiert wird. Damit scheitern die Tests gezwungenermassen zuerst. Was als <em>rot</em> bezeichent wird. Wenn die Funktion implementiert wird, sollten die Tests erfolgreich durchgeführt werden - <em>grün</em>. Der letzte Schritt heisst <em>Überarbeiten</em>. Da die Tests vorhanden sind kann die Funktion auch nachträglich effizenter nochmals implementiert werden und sollte immer noch das gleiche tun solange es die Tests besteht.</p>
+
+<p>Dadurch, dass die Tests zuerst geschrieben werden, wird auch sichergestellt, dass sie das testen, was sie testen sollen, denn sonst würde die implementierete Funktion sie nicht erfolgreich passieren.</p>
+
+<p>Ein einfach Test kann so aussehen:</p>
+
+<pre><code>describe "GET 'home'" do
+  it "should be sucessful" do
+    get 'home'
+    response.should be_success
+  end
+end
+</code></pre>
+
+<p>Dabei ist das ganze auch Ruby, womit alle dessen Funktionen genutzt werden können. Die Linien, welche mit <code>describe</code> und <code>it</code> beginnen sind vor allem beschreibend und sollen in "normalem" Englisch erklären, was der Test testet. <code>describe</code> fasst dabei mehrere Tests zusammen und <code>it</code> beschreibt einen einzelnen Test. Mit <code>get</code> wird eine HTTP GET-Anfrage an die Methode <code>home</code> gesendet und mit <code>response.should be_success</code> getestet, ob die Seite (View zum Controller) vorhanden ist.</p>
+
+<p>Um die Tests durzuführen wird folgendes Kommando eingegeben:</p>
+
+<pre><code>$ rspec spec/
+</code></pre>
+
+<h2>Embedded Ruby</h2>
+
+<p>Die Views von Rails werden in <em>embbedded Ruby</em> geschrieben. Grunsätzlich ist es normales HTML in das einfach Rubycode eingefügt wird und zwar wie folgt:</p>
+
+<pre><code>&lt;% Code %&gt;
+</code></pre>
+
+<p>Diese Zeile wird dann in Ruby ausgeführt. Falls das Ergebniss ausgegeben werden soll, muss beim Öffnen ein <code>=</code> eingefügt werden. Das sieht dann folgendermassen aus.</p>
+
+<pre><code>&lt;%= @titel %&gt;
+</code></pre>
+
+<p>Damit nicht für jeden View das ganze HTML-Grundgerüst geschrieben werden muss, das sowieso immer gleich ist, kann in <code>programmname/app/views/layouts/application.html.erb</code> ein Grundlayout angelegt werden. Mit <code>&lt;%= yield %&gt;</code> wird dann markiert, wo die Views eingefügt werden.</p>
+
+<h3>Helper</h3>
+
+<p>(Eigendlich in Kaptiel 4 erwähnt)</p>
+
+<p>Mit Helpern (Helfern) können Funktionen definiert werden die direkt zum Layout gehören, aber nicht statisch in das Grundlayout geschrieben werden können. Helper für das Grundlayout können in <code>programmname/app/helpers/application_helper.rb</code> definiert werden. Ein Helper könnte beispielsweise der Title in der Menübar des Browsers sein. Die Basis ist immer gleich, aber der Titel der einzelnen Seiten kommt dann noch dyanamisch dazu.</p>
