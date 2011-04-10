@@ -1,9 +1,11 @@
 class PagesController < ApplicationController
-  def home
-  end
+	def home
+		
+	end
 
-  def kapitel3
-  end
+	def kapitel3
+		@title = "Kapitel 3"
+	end
 
   def kapitel4
   end

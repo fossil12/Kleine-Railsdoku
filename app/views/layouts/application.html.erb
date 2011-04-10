@@ -1,14 +1,27 @@
 <!DOCTYPE html>
 <html>
-<head>
-  <title>KleineRailsdoku</title>
-  <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
-  <%= csrf_meta_tag %>
-</head>
-<body>
+	<head>
+		<title><%= title %></title>
+		<%= stylesheet_link_tag 'style', :media => 'screen' %>
+		<%= csrf_meta_tag %>
+	</head>
+	<body>
+		
+		<div class="container">
+			
+			<header>
+				<h1>Kleine Railsdoku</h1>
+			</header>
 
-<%= yield %>
+			<%= render 'layout/navigation' %>
+			
+			<section class="content">
+				<%= yield %>
+			</section>
+			
+			<%= render 'layouts/footer' %>
+		
+		</div>
 
-</body>
+	</body>
 </html>
