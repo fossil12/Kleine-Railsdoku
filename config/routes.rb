@@ -1,4 +1,18 @@
 KleineRailsdoku::Application.routes.draw do
+  get "pages/home"
+
+  get "pages/kapitel3"
+
+  get "pages/kapitel4"
+
+  get "pages/kapitel5"
+
+  get "pages/kapitel6"
+
+  get "pages/cheatsheet"
+
+  get "pages/bericht"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
