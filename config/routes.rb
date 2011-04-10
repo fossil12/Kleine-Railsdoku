@@ -1,4 +1,14 @@
 KleineRailsdoku::Application.routes.draw do
+  
+  root :to => 'pages#home'
+  
+  match '/kapitel3', :to => 'pages#kapitel3'
+  match '/kapitel4', :to => 'pages#kapitel4'
+  match '/kapitel5', :to => 'pages#kapitel5'
+  match '/kapitel6', :to => 'pages#kapitel6'
+  match '/cheatsheet', :to => 'pages#cheatsheet'
+  match '/bericht', :to => 'pages#bericht'
+  
   get "pages/home"
 
   get "pages/kapitel3"

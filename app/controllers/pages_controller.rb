@@ -7,19 +7,24 @@ class PagesController < ApplicationController
 		@title = "Kapitel 3"
 	end
 
-  def kapitel4
-  end
+	def kapitel4
+		@title = "Kapitel 4"
+	end
 
-  def kapitel5
-  end
+	def kapitel5
+ 		@title = "Kapitel 5"
+	end
 
-  def kapitel6
-  end
+	def kapitel6
+		@title = "Kapitel 6"
+	end
 
-  def cheatsheet
-  end
+	def cheatsheet
+		@title = "Cheatsheet"
+	end
 
-  def bericht
-  end
+	def bericht
+		@title = "Bericht"
+	end
 
 end
