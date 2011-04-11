@@ -1,2 +1,98 @@
-<h1>Pages#cheatsheet</h1>
-<p>Find me in app/views/pages/cheatsheet.html.erb</p>
+<h1>Cheatsheet</h1>
+
+<h2>Allgemein</h2>
+
+<p>Testserver unter <a href="http://localhost:3000">localhost:3000</a> starten:</p>
+
+<pre><code>$ rails server # oder $rails s
+</code></pre>
+
+<p>Railskonsole:</p>
+
+<pre><code>$ rails console # oder $ rails c
+</code></pre>
+
+<p>Konsole, die nichts in der Datenbank speichert:</p>
+
+<pre><code>$ rails c --sandbox
+</code></pre>
+
+<p>Alle Tests laufen lassen:</p>
+
+<pre><code>$ rspec /spec
+</code></pre>
+
+<h2>Neue Railsinstanz mit RSpec als Testframework</h2>
+
+<pre><code>$ rails new programmname -T
+</code></pre>
+
+<p>Im Gemfile (<code>programmname/Gemfile</code>) folgende Zeilen einfügen:</p>
+
+<pre><code>group :development do
+  gem 'rspec-rails'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'webrat'
+end
+</code></pre>
+
+<p>Die Gems installieren:</p>
+
+<pre><code>$ bundle install
+</code></pre>
+
+<p>RSpec installieren:</p>
+
+<pre><code>$ rails generate rspec:install
+</code></pre>
+
+<h2>Rails generate</h2>
+
+<h3>Neuer Controller</h3>
+
+<pre><code>$ rails generate controller Controllername methodenname1 [methodenname2 ...] 
+    # Es können beliebig viele Methodennamen hinzugefügt werden
+</code></pre>
+
+<h3>Neues Model</h3>
+
+<pre><code>$ rails generate model Modelname parameter1:typ1 [parameter2:typ2 ...]
+</code></pre>
+
+<p>Die Datenbank auf den aktuellen Stand migrieren:</p>
+
+<pre><code>$ rake db:migrate
+</code></pre>
+
+<p>Die Testdatenbank auch auf den aktuellen Stand bringen:</p>
+
+<pre><code>$ rake db:test:prepare
+</code></pre>
+
+<p>Die Datenbank zurück migriegen:</p>
+
+<pre><code>$ rake db:rollback
+</code></pre>
+
+<h3>Neuer Integrationstest</h3>
+
+<pre><code>$ rails generate integration_test name_des_tests
+</code></pre>
+
+<h2>Deployement nach Heroku</h2>
+
+<pre><code>$ git init   # Gitrepositroy anlegen
+$ git add .  # Alle Dateien in das Repository aufnehmen
+$ git commit -m "Initialer Commit"
+
+# Optional GitHub hinzufügen (nachem das neue Repository auf GitHub angelegt wurde)
+$ git remote add origin git@github.com:&lt;Benutzername&gt;/programmname.git
+$ git push origin master  # Nachher sollte $ git push reichen
+
+$ heroku create NamederSubdomain
+$ git push heroku master # Nachher sollte $ git push heroku reichen
+$ heroku open # Die Instanz im Browser öffnen
+</code></pre>

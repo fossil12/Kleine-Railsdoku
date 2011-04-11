@@ -1,12 +1,20 @@
-/* @override http://kleinerailsdoku.heroku.com/stylesheets/style.css */
+/* @override 
+	http://kleinerailsdoku.heroku.com/stylesheets/style.css
+	http://kleinerailsdoku.heroku.com/stylesheets/style.css?1302473892
+	http://localhost:3000/stylesheets/style.css?1302519157
+	http://localhost:3000/stylesheets/style.css?1302519683
+	http://localhost:3000/stylesheets/style.css?1302519987
+*/
 
 body {
 	background: #f8979a;
 	color: #481409;
 	font-family: 'Helvetica', sans-serif;
+	font-size: 16px;
+	line-height: 21px;
 }
 
-a{
+a {
 	color: #770f37;
 }
 
@@ -15,67 +23,78 @@ div.container{
 	margin: 0 auto;
 }
 
-header{
+header {
 	margin-bottom: 70px;
 }
 
-header h1{
+header h1 {
 	font-size: 5em;
 }
 
-nav{
-	height: 10px;
+nav {
+	height: 70px;
+	/*border-bottom: 1px solid #8f1a2c;*/
 }
 
-nav li{
+nav li {
 	float: left;
 	list-style-type: none;
 	padding: 0px 10px 0px 0px;
 	margin: 0px;
 }
 
-nav li span{
+nav li a {
 	background-color: #f53b36;
-	padding: 10px;
+	display: block;
+	padding: 8px 10px;
 	border-radius: 5px;
-	-moz-box-shadow: inset 2px 2px 5px #000;
-	-webkit-box-shadow: inset 2px 2px 5px #000;
-	box-shadow: inset 2px 2px 5px #000;
 }
 
-nav li span:hover{
+nav li a:hover {
 	-moz-box-shadow: 2px 2px 5px #000;
 	-webkit-box-shadow: 2px 2px 5px #000;
 	box-shadow: 2px 2px 5px #000;
 }
 
-nav li span a{
+nav li a:active {
+	-moz-box-shadow: inset 2px 2px 5px #000;
+	-webkit-box-shadow: inset 2px 2px 5px #000;
+	box-shadow: inset 2px 2px 5px #000;
+}
+
+nav li span a {
 	text-decoration: none;
 	color: #fff;
 }
 
-nav ul{
+nav ul {
 	padding: 0px;
 	margin: 0px;
 }
 
-section{
-	margin-top: 70px;
+section {
+	margin-top: 30px;
 }
 
-section pre{
+code {
+	font-size: 14px;
+	font-family: "Courier New", Courier, mono;
+}
+
+section pre {
 	background-color: #f0d9d2;
 	padding: 5px 5px 5px 25px;
 	border-left: 3px #8f1a2c solid;
 	z-index: ;
 }
 
-p code{
-	
+p code, li code {
 	background-color: #f0d9d2;
 }
 
-footer{
-	padding: 15px 0px 10px 0px;
+footer {
+	border-top: 1px solid #8f1a2c;
 	font-size: 0.7em;
+	margin-top: 25px;
+	padding: 0px 0px 10px 0px;
 }

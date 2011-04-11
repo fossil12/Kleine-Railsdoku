@@ -59,7 +59,8 @@ $ heroku open # Die Instanz im Browser öffnen
 
 <p>Um einen Controller und Views für solche statischen Seiten zu erzeugen kann folgender Befehl genutzt werden:</p>
 
-<pre><code>$ rails generate controller Controllername methodenname1 [methodenname2 ...] # Es können beliebig viele Methodennamen hinzugefügt werden
+<pre><code>$ rails generate controller Controllername methodenname1 [methodenname2 ...] 
+	# Es können beliebig viele Methodennamen hinzugefügt werden
 </code></pre>
 
 <p>Dabei wird in <code>programmanme/app/controllers</code> ein neuer Controller mit dem vorgegebenen Namen und <code>Controller</code> dahinter angelegt, in <code>programmname/app/views/conrollername</code> wir ein View für jede Methode angelegt und in <code>programmname/spec</code> werden Dateien für die Tests angelegt, von denen nur diejenigen in <code>controller</code> gebraucht werden. Der Rest kann getrost gelöscht werden. Schlussendlich werden in <code>programmname/config/routes.rb</code> die URLs für die Seiten (welche den Views und Methoden ensprechen) definiert, damit sie auf gerufen werden können.</p>

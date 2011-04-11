@@ -115,6 +115,11 @@ describe PagesController do
 			response.should have_selector("title", :content => "Cheatsheet - " + @base_title)
 		end
 		
+		it "should have content" do
+			get 'cheatsheet'
+			response.should have_selector('h1', :content => "Cheatsheet")
+		end
+		
 	end
 
 	describe "GET 'bericht'" do
@@ -127,6 +132,11 @@ describe PagesController do
 		it "should have the right title" do
 			get 'bericht'
 			response.should have_selector("title", :content => "Bericht - " + @base_title)
+		end
+		
+		it "should have content" do
+			get 'bericht'
+			response.should have_selector('h1', :content => "Bericht")
 		end
 		
 	end
