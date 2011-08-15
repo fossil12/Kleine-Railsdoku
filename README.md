@@ -1,7 +1,7 @@
 Kleine Railsdoku
 ================
 
-Dies ist der Quelltext der Railsapp zur Seite [Kleine Railsdoku](#) von [David Keller](http://www.davidkeller.me), welche im Rahmen einer Projektarbeit im Ergänzungsfach Informatik erstellt wurde.
+Dies ist der Quelltext der Railsapp zur Seite [Kleine Railsdoku](http://kleinerailsdoku.heroku.com/) von [David Keller](http://www.davidkeller.me), welche im Rahmen einer Projektarbeit im Ergänzungsfach Informatik erstellt wurde.
 
 Lokale Intallation
 ------------------
