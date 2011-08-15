@@ -1,13 +1,13 @@
 <h1>Kapitel 5</h1>
 
-<p>In diesem Kapitel geht es auch noch um CSS. Das dies für den Autor dieser Zusammenfassung irrelevant ist, wird es hier nicht weiter erwähnt.</p>
+<p>In diesem Kapitel geht es auch noch um CSS. Da dies für den Autor dieser Zusammenfassung aber irrelevant ist, wird es hier nicht weiter erwähnt.</p>
 
 <h2>Vordefinierte Helper in Rails</h2>
 
-<p>Es gibt eine Reihe von Helpern, die in Ruby schon vordefiniert sind. Einige davon werd nun hier aufgezählt.</p>
+<p>Es gibt eine Reihe von Helpern, die in Ruby schon vordefiniert sind. Einige davon werden nun hier aufgezählt.</p>
 
 <ul>
-<li><p><code>stylseesheet_link_tag</code></p>
+<li><p><code>stylesheet_link_tag</code></p>
 
 <p>Wird, wie der Name schon sagt, zum Einbinden von Stylesheets (CSS-Dateien) verwendet. Als erster Parameter wird der relative Pfad zum Stylesheet im Ordner <code>programmname/public/stylesheet</code> angegeben (.css ist optional) und als zweites der Mediatyp in Form eines Hashes.</p>
 
@@ -16,7 +16,7 @@
 
 <p>Hier sehen wir auch, dass bei einem Funktionsaufruf in Ruby keine Klammern gesetzt werden müssen und falls als letzter Parameter ein Hash übergeben wird, dort auch keine geschweiften Klammern nötig sind. Der Aufruf könnte auch folgendermassen geschrieben werden:</p>
 
-<pre><code>stylesheet_link_tag('style', { :media =&gt; 'screen' }
+<pre><code>stylesheet_link_tag('style', { :media =&gt; 'screen' })
 </code></pre></li>
 <li><p><code>image_tag</code></p>
 
@@ -26,7 +26,7 @@
 </code></pre></li>
 <li><p><code>link_to</code></p>
 
-<p>Erzeugt Links, die vor allem für interne Verlinkungen sehr praktisch sind, da dann immer automatisch die richtigen Links geseyt werden. <code>link_to</code> wird zuerst der zu verlinkende Text über geben, dann der Link und schlussendlich optional noch eine Klasse.</p>
+<p>Erzeugt Links, die vor allem für interne Verlinkungen sehr praktisch sind, da dann immer automatisch die richtigen Links gesetzt werden. <code>link_to</code> wird zuerst der zu verlinkende Text über geben, dann der Link und schlussendlich optional noch eine Klasse.</p>
 
 <pre><code>link_to "Home", "/", :class =&gt; "home_link"
 </code></pre></li>
@@ -62,7 +62,7 @@ end
 
 <h3>Routen</h3>
 
-<p>Um nun die Seite Kontakt aus dem Controller <code>Seiten</code> unter <code>/kontakt</code> erreichbar zu machen müssen sogenannte Routen in <code>programmname/config/routes.rb</code> eingetragen werden. Für unser beispiel wäre das</p>
+<p>Um nun die Seite Kontakt aus dem Controller <code>Seiten</code> unter <code>/kontakt</code> erreichbar zu machen müssen sogenannte Routen in <code>programmname/config/routes.rb</code> eingetragen werden. Für unser Beispiel wäre das</p>
 
 <pre><code>match '/kontakt', :to =&gt; 'seiten#kontakt'
 </code></pre>

@@ -91,25 +91,24 @@ end
 <li><p>Mit <code>.sort</code> können sie sortiert werden</p></li>
 <li><p>Mit <code>.reverse</code> kann die Reiehenfolge umgekert werden.</p></li>
 <li><p>Mit <code>.shuffle</code> kann eine zufällige Reihenfolge erzeugt werden.</p></li>
-<li><p>Um alle Elemente in einen String zusammen zu fassen, kann <code>.join</code> aufgerufen werden. Es kann in einer Klammer nach der Methode auch optional ein Trenne für zwischen den Elementen definiert werden.</p></li>
+<li><p>Um alle Elemente in einen String zusammen zu fassen, kann <code>.join</code> aufgerufen werden. Es kann in einer Klammer nach der Methode auch optional ein Trenner definiert werden.</p></li>
 </ul>
 
 <h2>Blöcke</h2>
 
-<p>Blocks sind Schalufen, die auf Arrays (oder Bereiche/ranges) angewendet werden können. Dabei kann z.B. mit <code>.each</code> eine <code>for</code>-Schleif aus anderen Programmiersprachen einfacher aufgeschrieben werden.</p>
+<p>Blöcke sind Schlaufen, die auf Arrays (oder Bereiche/ranges) angewendet werden können. Dabei kann z.B. mit <code>.each</code> eine <code>for</code>-Schleif aus anderen Programmiersprachen einfacher aufgeschrieben werden.</p>
 
 <p>Es gibt Zwei mögliche Notiationen</p>
 
-<pre><code>    array = [1, 2, 3, 4]
+<pre><code>array = [1, 2, 3, 4]
 
-    array.each { |i| puts i }
+array.each { |i| puts i }
 
-    array.each do |i|
-        puts i
-    end
-</code></pre>
+array.each do |i|
+    puts i
+end</code></pre>
 
-<p>Wobei empfohlen wird die erste Variante für Einzeiler zu verwenden und die zweite Variante für mehrzeilige Blöcke. Zwischen den <code>|</code> wird die Laufvariable definiert.</p>
+<p>Wobei empfohlen wird die erste Variante für Einzeiler zu verwenden und die zweite Variante für mehrzeilige Blöcke. Zwischen den <code>|</code> wird die Laufvariable (oder die Laufvariablen) definiert.</p>
 
 <h2>Hashes</h2>
 
